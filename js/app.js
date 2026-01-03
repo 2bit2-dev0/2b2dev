@@ -14,10 +14,10 @@ themeToggle.addEventListener("click", () => {
 
 function updateTheme() {
   if (darkMode) {
-    document.body.classList.add("dark");
+    document.documentElement.setAttribute("data-theme", "dark");
     themeToggle.textContent = "☀️";
   } else {
-    document.body.classList.remove("dark");
+    document.documentElement.setAttribute("data-theme", "light");
     themeToggle.textContent = "🌙";
   }
 }
