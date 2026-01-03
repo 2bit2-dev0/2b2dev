@@ -30,9 +30,9 @@ langToggle.addEventListener("click", () => {
 function updateLanguage() {
   if (language === "EN") {
     langToggle.textContent = "PT";
-    document.getElementById("title").textContent = "Dev Studio";
+    document.getElementById("title").textContent = "2bit² Dev Studio";
   } else {
     langToggle.textContent = "EN";
-    document.getElementById("title").textContent = "Estúdio Dev";
+    document.getElementById("title").textContent = "Estúdio Dev 2bit²";
   }
 }
