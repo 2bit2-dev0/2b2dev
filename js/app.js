@@ -1,38 +1,30 @@
-const themeToggle = document.getElementById("themeToggle");
-const langToggle = document.getElementById("langToggle");
+// THEME
+const themeBtn = document.getElementById("themeToggle");
+const currentTheme = localStorage.getItem("theme") || "light";
+document.documentElement.dataset.theme = currentTheme;
 
-let darkMode = false;
-let language = "EN";
+themeBtn.onclick = () => {
+  const newTheme =
+    document.documentElement.dataset.theme === "light"
+      ? "dark"
+      : "light";
+  document.documentElement.dataset.theme = newTheme;
+  localStorage.setItem("theme", newTheme);
+};
 
-updateTheme();
-updateLanguage();
+// LANGUAGE
+let lang = localStorage.getItem("lang") || "en";
 
-themeToggle.addEventListener("click", () => {
-  darkMode = !darkMode;
-  updateTheme();
-});
+document.getElementById("langToggle").onclick = () => {
+  lang = lang === "en" ? "pt-BR" : "en";
+  localStorage.setItem("lang", lang);
+  loadLang();
+};
 
-function updateTheme() {
-  if (darkMode) {
-    document.documentElement.setAttribute("data-theme", "dark");
-    themeToggle.textContent = "☀️";
-  } else {
-    document.documentElement.removeAttribute("data-theme");
-    themeToggle.textContent = "🌙";
-  }
+async function loadLang() {
+  const res = await fetch(`i18n/${lang}.json`);
+  const data = await res.json();
+  document.getElementById("title").textContent = data.title;
 }
 
-langToggle.addEventListener("click", () => {
-  language = language === "EN" ? "PT" : "EN";
-  updateLanguage();
-});
-
-function updateLanguage() {
-  if (language === "EN") {
-    langToggle.textContent = "PT";
-    document.getElementById("title").textContent = "Dev Studio";
-  } else {
-    langToggle.textContent = "EN";
-    document.getElementById("title").textContent = "Estúdio Dev";
-  }
-}
+loadLang();
