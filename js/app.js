@@ -17,7 +17,7 @@ function updateTheme() {
     document.documentElement.setAttribute("data-theme", "dark");
     themeToggle.textContent = "☀️";
   } else {
-    document.documentElement.setAttribute("data-theme", "light");
+    document.documentElement.removeAttribute("data-theme");
     themeToggle.textContent = "🌙";
   }
 }
@@ -30,9 +30,9 @@ langToggle.addEventListener("click", () => {
 function updateLanguage() {
   if (language === "EN") {
     langToggle.textContent = "PT";
-    document.getElementById("title").textContent = "2bit² Dev Studio";
+    document.getElementById("title").textContent = "Dev Studio";
   } else {
     langToggle.textContent = "EN";
-    document.getElementById("title").textContent = "Estúdio Dev 2bit²";
+    document.getElementById("title").textContent = "Estúdio Dev";
   }
 }
